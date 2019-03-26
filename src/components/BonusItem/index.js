@@ -52,16 +52,15 @@ const styles = theme => ({
 
 const BonusItem = ({ classes, bonus }) => {
   const promocodeInput = React.useRef(null);
-  const button = React.useRef(null);
   React.useEffect(() => {
-    const clipboard = new Clipboard(button.current, {
+    const clipboard = new Clipboard(promocodeInput.current, {
       target: () => promocodeInput.current
     });
 
     return () => {
       clipboard.destroy();
     };
-  }, [promocodeInput, button]);
+  }, [promocodeInput]);
   return (
     <Card className={classes.root}>
       <span className={classes.title}>{bonus.title}</span>
@@ -72,11 +71,7 @@ const BonusItem = ({ classes, bonus }) => {
         label={<IntlText id="promocode" />}
         value={bonus.promocode}
         disabled
-        icon={
-          <div ref={button}>
-            <Copy />
-          </div>
-        }
+        icon={<Copy />}
       />
       <Button className={classes.button} variant="raised">
         <IntlText id="getBonus" />
