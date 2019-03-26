@@ -12,6 +12,10 @@ module.exports = {
         use: ['babel-loader']
       },
       {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      },
+      {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           {
@@ -31,6 +35,17 @@ module.exports = {
             options: {
               name: '[name].[hash].[ext]',
               outputPath: 'images/'
+            }
+          }
+        ]
+      },
+      {
+        test: /.svg$/,
+        use: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              native: true
             }
           }
         ]
